@@ -7,7 +7,7 @@ package arbolbinario.modelo.excepciones;
 
 /**
  *
- * @author aula205c
+ * @author aula205cww
  */
 public class ArbolNException extends Exception{
 

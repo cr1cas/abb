@@ -25,6 +25,16 @@ public class ArbolN {
         this.raiz = raiz;
     }
     
+    /*
+    metodo insertarHijo -->
+    SI la raiz es igual a nula, se agrega un nuevo nodo que se convertiria en la raiz
+    
+    SINO
+    SI--> si ya hay un dato ingresado y es igual al padre, agregan un nuevo hijo en el nodo
+    
+    SINO
+    PARA -->
+    */  
     public void insertarHijo(NodoN pivote, Visitante hijo, Visitante padre){
         if(raiz==null)
         {
@@ -53,7 +63,11 @@ public class ArbolN {
             }
         }    
     }
-    
+    /*
+    recorrerArbolN --> si la raiz es diferente de null
+    el atributo --listado-- va agregando de uno en uno los datos
+    al final retorna el listado
+    */
     public String recorrerArbolN() throws ArbolNException{
         if(raiz!=null)
         {
@@ -64,6 +78,11 @@ public class ArbolN {
         throw new ArbolNException("El árbol está vacío");
     }
     
+    /*
+    recorrerArbolN -->
+    el atributo --listado-- va agregando los dato y los recorre por medio del ciclo FOR
+    al final retorna el listado de todo los datos
+    */
     public String recorrerArbolN(NodoN pivote, String listado)
     {
         listado += "\n"+pivote.getDato();
