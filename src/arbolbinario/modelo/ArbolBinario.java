@@ -16,7 +16,10 @@ import java.util.logging.Logger;
  */
 public class ArbolBinario {
 
-    //declaracion del atributo raiz tipo Nodo
+    /*
+    @param raiz declaracion del atributo tipo Nodo
+    */
+    
     private Nodo raiz;
 
     //public void adicionarNodo()
@@ -28,7 +31,9 @@ public class ArbolBinario {
         this.raiz = raiz;
     }
 
-    //metodo islleno --> para conocer si la raiz esta nula(no tiene ningun dato)
+    /*
+    @param  islleno --> para conocer si la raiz esta nula(no tiene ningun dato)
+    */
     public void isLleno() throws ArbolBinarioException {
         if (raiz == null) {
             throw new ArbolBinarioException("El árbol está vacío");
@@ -36,7 +41,7 @@ public class ArbolBinario {
     }
 
     /*
-    metodo adicionarNodo ---> empieza a recorrer el arbol desde la raiz para adicionar un dato ingresado
+    @param adicionarNodo ---> empieza a recorrer el arbol desde la raiz para adicionar un dato ingresado
     si la raiz es igul a nula, entonces la raiz adiciona un nuevo nodo con el dato ingresado
     */
     public void adicionarNodo(int dato, Nodo ubicacion) throws ArbolBinarioException {
@@ -87,10 +92,10 @@ public class ArbolBinario {
     
     
     /*
-    En el metodo inOrden ejecuta inicialmente el metodo isLleno
+    @param inOrden --> ejecuta inicialmente el metodo isLleno
     despues crea una instancia del ArrayList y lo llama 1
     Ejecuta el meotoo InOrden ingresando lo datos en la raiz
-    y por ultimo retorna el ArrayList
+    @return --> por ultimo retorna el ArrayList
     */
      public ArrayList inOrden() throws ArbolBinarioException{
         isLleno();
@@ -100,13 +105,13 @@ public class ArbolBinario {
     }
 
     /*
-     Metodo inOrden --> este metodo verifica por medio de un recorrido
+     @param inOrden --> este metodo verifica por medio de un recorrido
      SI el recorrido del arbol es diferente de nulo(osea que tiene datos ingresados)
      
      Verifica los dato de la Izquierda de cada raiz hasta que ya no tenga mas nodos a la izquierda
      regresa a la raiz y agrega el dato en el ArrayList
      verifica el nodo de la derecha(en este caso el nodo se vuelve raiz) y vuelve a verificar el nodo izquierda
-     en caso de no tener dato regresa a la raiz(el que era nodo de la derecha) y lo vuelve a ingresar en el ArrayList
+     @return --> en caso de no tener dato regresa a la raiz(el que era nodo de la derecha) y lo vuelve a ingresar en el ArrayList
      */
      private void inOrden(Nodo reco,ArrayList l) {
         if (reco != null) {
@@ -117,7 +122,7 @@ public class ArbolBinario {
     }
     
     /*
-    metodo llenarArbol --> compuesto por un array con datos separados por comas 
+    @param llenarArbol --> compuesto por un array con datos separados por comas 
      y consulta el metodo adicionarNodo para agregar los datos al arrayList
     */
      public void llenarArbol(String datos) throws ArbolBinarioException

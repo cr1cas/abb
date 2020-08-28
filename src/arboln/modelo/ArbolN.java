@@ -26,7 +26,7 @@ public class ArbolN {
     }
     
     /*
-    metodo insertarHijo -->
+    @param insertarHijo -->
     SI la raiz es igual a nula, se agrega un nuevo nodo que se convertiria en la raiz
     
     SINO
@@ -64,9 +64,9 @@ public class ArbolN {
         }    
     }
     /*
-    recorrerArbolN --> si la raiz es diferente de null
+    @param recorrerArbolN --> si la raiz es diferente de null
     el atributo --listado-- va agregando de uno en uno los datos
-    al final retorna el listado
+    return --> al final retorna el listado
     */
     public String recorrerArbolN() throws ArbolNException{
         if(raiz!=null)
@@ -79,9 +79,9 @@ public class ArbolN {
     }
     
     /*
-    recorrerArbolN -->
+    @param recorrerArbolN -->
     el atributo --listado-- va agregando los dato y los recorre por medio del ciclo FOR
-    al final retorna el listado de todo los datos
+    @return --> al final retorna el listado de todo los datos
     */
     public String recorrerArbolN(NodoN pivote, String listado)
     {

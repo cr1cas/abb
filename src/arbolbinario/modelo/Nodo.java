@@ -13,7 +13,12 @@ import arbolbinario.modelo.excepciones.ArbolBinarioException;
  */
 public class Nodo {
     
-    //atributos de la clase nodo con los paramtros izquierda y derecha para redireccionar el dato segun corresponda
+    /*
+    @param dato  --> numero que se ingresara en el arbol
+    @param izquierda --> para direccionar nodos de menor valor al actual
+    @param derecha --> para direccionar nodos de mayor valor al actual
+    
+    */
     private int dato;
     private Nodo izquierda;
     private Nodo derecha;
