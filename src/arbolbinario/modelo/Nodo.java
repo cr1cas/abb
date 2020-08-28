@@ -14,6 +14,7 @@ import arbolbinario.modelo.excepciones.ArbolBinarioException;
 public class Nodo {
     
     /*
+    @author Critian Castañeda Espitia
     @param dato  --> numero que se ingresara en el arbol
     @param izquierda --> para direccionar nodos de menor valor al actual
     @param derecha --> para direccionar nodos de mayor valor al actual

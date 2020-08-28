@@ -26,8 +26,8 @@ public class ArbolN {
     }
     
     /*
-    @param insertarHijo -->
-    SI la raiz es igual a nula, se agrega un nuevo nodo que se convertiria en la raiz
+    @author Critian Castañeda Espitia
+    @param insertarHijo --> SI la raiz es igual a nula, se agrega un nuevo nodo que se convertiria en la raiz
     
     SINO
     SI--> si ya hay un dato ingresado y es igual al padre, agregan un nuevo hijo en el nodo
@@ -64,6 +64,7 @@ public class ArbolN {
         }    
     }
     /*
+    @author Critian Castañeda Espitia
     @param recorrerArbolN --> si la raiz es diferente de null
     el atributo --listado-- va agregando de uno en uno los datos
     return --> al final retorna el listado
@@ -79,6 +80,7 @@ public class ArbolN {
     }
     
     /*
+    @author Critian Castañeda Espitia
     @param recorrerArbolN -->
     el atributo --listado-- va agregando los dato y los recorre por medio del ciclo FOR
     @return --> al final retorna el listado de todo los datos

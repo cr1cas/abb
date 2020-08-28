@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 public class ArbolBinario {
 
     /*
+    @author Critian Castañeda Espitia
     @param raiz declaracion del atributo tipo Nodo
     */
     
@@ -32,6 +33,7 @@ public class ArbolBinario {
     }
 
     /*
+    @author Critian Castañeda Espitia
     @param  islleno --> para conocer si la raiz esta nula(no tiene ningun dato)
     */
     public void isLleno() throws ArbolBinarioException {
@@ -41,6 +43,7 @@ public class ArbolBinario {
     }
 
     /*
+    @author Critian Castañeda Espitia
     @param adicionarNodo ---> empieza a recorrer el arbol desde la raiz para adicionar un dato ingresado
     si la raiz es igul a nula, entonces la raiz adiciona un nuevo nodo con el dato ingresado
     */
@@ -92,6 +95,7 @@ public class ArbolBinario {
     
     
     /*
+    @author Critian Castañeda Espitia
     @param inOrden --> ejecuta inicialmente el metodo isLleno
     despues crea una instancia del ArrayList y lo llama 1
     Ejecuta el meotoo InOrden ingresando lo datos en la raiz
@@ -105,6 +109,7 @@ public class ArbolBinario {
     }
 
     /*
+     @author Critian Castañeda Espitia
      @param inOrden --> este metodo verifica por medio de un recorrido
      SI el recorrido del arbol es diferente de nulo(osea que tiene datos ingresados)
      
@@ -122,8 +127,9 @@ public class ArbolBinario {
     }
     
     /*
+    @author Critian Castañeda Espitia
     @param llenarArbol --> compuesto por un array con datos separados por comas 
-     y consulta el metodo adicionarNodo para agregar los datos al arrayList
+    y consulta el metodo adicionarNodo para agregar los datos al arrayList
     */
      public void llenarArbol(String datos) throws ArbolBinarioException
     {
