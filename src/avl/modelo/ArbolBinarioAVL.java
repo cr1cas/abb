@@ -13,8 +13,14 @@ import java.util.logging.Logger;
 /**
  *
  * @author carloaiza
+ * @author CristianYesca
+ * @author CristianCamilo
+ * @version 28/08/2020
  */
-public class ArbolBinarioAVL {
+/*
+la clase ArbolBinarioAVL, nos permite crear un arbol binario
+*/
+public class ArbolBinarioAVL { //comienza de clase ArbolBinarioAVL
 
     private NodoAVL raiz;
 
@@ -32,7 +38,10 @@ public class ArbolBinarioAVL {
             throw new ArbolBinarioException("El árbol está vacío");
         }
     }
-
+    /*
+    * metodo usado para adicionar un nodo al arbol.
+    @param int dato y ubicacion del NodoAVL
+    */ 
     public void adicionarNodo(int dato, NodoAVL ubicacion) throws ArbolBinarioException {
         if (raiz == null) {
             raiz = new NodoAVL(dato);
@@ -87,7 +96,7 @@ public class ArbolBinarioAVL {
     }
 
     
-//
+// @deprecate metodos obsoletos, por ser parte de versiones antriores del proyecto
 //    public void rotarSimpleNuevo(NodoAVL princ, boolean sentido) {
 //
 //        if (!sentido) {
@@ -234,4 +243,4 @@ public class ArbolBinarioAVL {
     }
 
 
-}
+} //fin de la clase ArbolbinarioAVL.
