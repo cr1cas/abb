@@ -22,7 +22,9 @@ public class ArbolBinario {
     */
     
     private Nodo raiz;
-
+    int cant;
+    int altura;
+    
     //public void adicionarNodo()
     public Nodo getRaiz() {
         return raiz;
@@ -94,6 +96,58 @@ public class ArbolBinario {
     }
     
     
+    /**
+     * Método que retorna un arreglo de enteros con los datos de recorrer el
+     * árbol en preorden
+     *
+     * @return ArrayList
+     * @throws ArbolBinarioException
+     */
+    
+    
+    public ArrayList preOrden() throws ArbolBinarioException {
+        //isLleno();
+        ArrayList l = new ArrayList();
+        if (raiz != null) {
+            preOrden(raiz, l);
+        }        
+        return l;
+    }
+    
+    /**
+     * Método recursivo que recorre todo el árbol en preorden
+     * @param temp Ayudante que toma referencia en un nodo
+     * @param listado Acumulador para registrar el dato del nodo visitado
+     */
+    private void preOrden(Nodo temp, ArrayList listado)
+    {
+        //Condición que garantiza que el método finalice
+        if(temp!=null)
+        {
+            listado.add(temp.getDato());
+            preOrden(temp.getIzquierda(), listado);
+            preOrden(temp.getDerecha(), listado);
+        }
+    }
+    
+    public ArrayList posOrden() throws ArbolBinarioException {
+        ArrayList l=new ArrayList();
+        posOrden(raiz,l);
+        return l;
+    }
+
+    private void posOrden(Nodo reco, ArrayList l) {
+        if (reco != null) {
+            posOrden(reco.getIzquierda(),l);
+            posOrden(reco.getDerecha(),l);
+            //l.add(reco.getDato() + " ");
+            l.add(reco.getDato());
+        }
+    }
+    
+    
+    
+    
     /*
     @author Critian Castañeda Espitia
     @param inOrden --> ejecuta inicialmente el metodo isLleno
@@ -140,5 +194,249 @@ public class ArbolBinario {
         }
         
     }
+     
+     
+     public ArrayList impNiveles() {
+        ArrayList l=new ArrayList();
+        impNiveles(raiz, 1,l);
+        return l;
+    }
+     
+     private void impNiveles(Nodo reco, int nivel,ArrayList l) {
+        if (reco != null) {
+            impNiveles(reco.getIzquierda(), nivel + 1, l);
+            l.add(reco.getDato() + " Nivel: (" + nivel + ") ");
+            impNiveles(reco.getDerecha(), nivel + 1, l);
+        }
+    }
 
+     
+     //Nivel ordenado
+     String[] niveles;
+     
+     public int alturaArbol() {
+        altura = 0;
+        alturaArbol(raiz, 0);
+        return altura;
+    }
+
+    private void alturaArbol(Nodo pivote, int nivel) {
+        if (pivote != null) {
+            alturaArbol(pivote.getIzquierda(), nivel + 1);
+            if (nivel > altura) {
+                altura = nivel;
+            }
+            alturaArbol(pivote.getDerecha(), nivel + 1);
+        }
+    }
+
+    public ArrayList imprimirNivel() {
+        niveles = new String[alturaArbol() + 1]; /*En el método original se 
+                                                 estaba llamando la variable altura,
+                                                 pero se necesitaba llamar el metodo 
+                                                para que hiciera el calculo correspondiente*/
+        ArrayList l=new ArrayList();
+        imprimirNivel(raiz, 0);
+        for (int i = 0; i < niveles.length; i++) {
+            l.add(niveles[i] + " ");
+            //System.out.println(niveles[i] + " ");
+        }
+        return l;
+    }
+      public void imprimirNivel(Nodo pivote, int nivel2) {
+        if (pivote != null) {
+            niveles[nivel2] = pivote.getDato() + ", " + ((niveles[nivel2] != null) ? niveles[nivel2] : "");
+            imprimirNivel(pivote.getDerecha(), nivel2 + 1);
+            imprimirNivel(pivote.getIzquierda(), nivel2 + 1);
+        }
+    }
+      
+      
+      
+      //hojas
+    public ArrayList getHojas() {
+        ArrayList l = new ArrayList();
+        getHojas(this.raiz, l);
+        return (l);
+    }
+
+    private void getHojas(Nodo r, ArrayList l) {
+        if (r != null) {
+            if (this.esHoja(r)) {
+                l.add(r.getDato());
+            }
+            getHojas(r.getIzquierda(), l);
+            getHojas(r.getDerecha(), l);
+        }
+
+    }
+    protected boolean esHoja(Nodo x) {
+        return (x != null && x.getIzquierda()== null && x.getDerecha()== null);
+    }
+    
+    
+    public int padre(int info) {
+        if (info == 0 || this.raiz == null) {
+            return 0;
+        }
+        Nodo x = padre(this.raiz, info);
+        if (x == null) {
+            return 0;
+        }
+        return (x.getDato());
+    }
+
+    private Nodo padre(Nodo x, int info) {
+        if (x == null) {
+            return null;
+        }
+        if ((x.getIzquierda()!= null && x.getIzquierda().getDato()==(info)) || (x.getDerecha()!= null && x.getDerecha().getDato()==(info))) {
+            return (x);
+        }
+        Nodo y = padre(x.getIzquierda(), info);
+        if (y == null) {
+            return (padre(x.getDerecha(), info));
+        } else {
+            return (y);
+        }
+    }
+    
+    
+    //eliminar hojas - PODAR
+     public void podar() {
+        podar(this.raiz);
+    }
+
+    private void podar(Nodo x) {
+        if (x == null) {
+            return;
+        }
+        if (this.esHoja(x.getIzquierda())) {
+            x.setIzquierda(null);
+        }
+        if (this.esHoja(x.getDerecha())) {
+            x.setDerecha(null);
+        }
+        podar(x.getIzquierda());
+        podar(x.getDerecha());
+    }
+    
+    //Balance
+    int subizq = 0;
+    int subder = 0;
+
+    public String imprimirBalance() {
+         subizq = 0;
+         subder = 0;
+
+        Balance(this.raiz, true, 0);
+        //System.out.println("lado Izquierdo " + subizq + " Lado Derecho " + subder);
+        if (subizq - subder == 0) {
+            return ("El balance es: 0 ");
+        } else if (subizq - subder == -1) {
+            return("El balance es -1, derecha");
+        } else if (subizq - subder == 1) {
+            return("El balance 1, izquierda");
+
+        } else {
+            return("No es balanceado.."
+                    + "porque es mas grande el lado "
+                    + ((subizq > subder) ? "Izquierdo" : "Derecho"));
+        }
+
+    }
+
+    public void Balance(Nodo reco, boolean lado, int i) {
+
+        if (reco != null) {
+
+            if (reco.getDerecha()== null && reco.getIzquierda()== null) {
+                if (lado) {
+                    subder = (i > subder) ? i : subder;
+                } else {
+                    subizq = (i > subizq) ? i : subizq;
+                }
+            }
+
+            Balance(reco.getDerecha(), lado, i + 1);
+            if (i == 0) {
+                lado = false;
+            }
+            Balance(reco.getIzquierda(), lado, i + 1);
+        }
+
+    }
+    
+    //borrar mayor
+    public String borrarMayor() {
+        Nodo reco=raiz.getIzquierda();
+        if (raiz != null) {
+            if (raiz.getDerecha()== null) {
+                raiz = raiz.getIzquierda();
+            } else {
+                Nodo anterior = raiz;
+                reco = raiz.getDerecha();
+                while (reco.getDerecha()!= null) {
+                    anterior = reco;
+                    reco = reco.getDerecha();
+                }
+                
+                anterior.setDerecha(reco.getIzquierda());
+            }
+        }
+        return ("Valor eliminado: " + reco.getDato());
+    }
+    
+    //Borrar menor
+    public String borrarMenor() {
+        Nodo reco=raiz.getIzquierda();
+        if (raiz != null) {
+            if (raiz.getIzquierda()== null) {
+                raiz = raiz.getDerecha();
+            } else {
+                Nodo anterior = raiz;
+                reco = raiz.getIzquierda();
+                while (reco.getIzquierda()!= null) {
+                    anterior = reco;
+                    reco = reco.getIzquierda();
+                }
+                
+                anterior.setIzquierda(reco.getDerecha());
+            }
+        }
+        return ("Valor eliminado: " + reco.getDato());
+    }
+    
+    //Obtener el numero de ramas
+    int numeroRamas = 0;
+    public ArrayList<String>ObtenerRamamayor(){
+    obtenernumeroRamas(this.raiz, 0);
+    return ObtenerRamamayor(this.raiz, 0, "", new ArrayList<String>());
+    }
+    public void obtenernumeroRamas(Nodo pivote, int contador) {
+        if (pivote != null) {
+            contador++;
+            obtenernumeroRamas(pivote.getIzquierda(), contador);
+            obtenernumeroRamas(pivote.getDerecha(), contador);
+        }
+        if (contador > this.numeroRamas) {
+            this.numeroRamas = contador;
+        }
+    }
+
+     public ArrayList<String> ObtenerRamamayor(Nodo pivote, int contador, String dato, ArrayList lista){
+        if (pivote != null ) {
+            dato+=pivote.getDato()+",";
+            contador ++;
+            lista=ObtenerRamamayor(pivote.getIzquierda(), contador, dato, lista);
+            lista=ObtenerRamamayor(pivote.getDerecha(), contador, dato, lista);
+            
+            if (contador == this.numeroRamas) {
+                lista.add(dato);
+            }
+        }
+        return lista;
+    }
+    
+    
 }
