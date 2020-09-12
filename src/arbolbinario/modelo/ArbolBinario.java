@@ -130,12 +130,24 @@ public class ArbolBinario {
         }
     }
     
+    /**
+     * metodo posOrden de tipo ArrayList que lanza una excepcion
+     * @return - retorna un arraylist
+     * @throws ArbolBinarioException 
+     */
+    
     public ArrayList posOrden() throws ArbolBinarioException {
         ArrayList l=new ArrayList();
         posOrden(raiz,l);
         return l;
     }
-
+    /**
+     * @author Cristian Castañeda Espitia
+     * metodo posOrden verifica primero la existencia de un nodo y recorre de izquierda a derecha hasta
+     * indicar los datos
+     * @param reco de tipo Nodo
+     * @param l de tipo ArrayList
+     */
     private void posOrden(Nodo reco, ArrayList l) {
         if (reco != null) {
             posOrden(reco.getIzquierda(),l);
@@ -195,13 +207,25 @@ public class ArbolBinario {
         
     }
      
-     
+     /**
+      * @author Cristian Castañeda Espitia
+      * metodo impNiveles de tipo ArrayList que sirve para almacenar todos
+      * los dato en un Array para al final retornarlos
+      * @return - retorna un arrayList de los niveles de acuerdo al metodo impNiveles de tipo void
+      */
      public ArrayList impNiveles() {
         ArrayList l=new ArrayList();
         impNiveles(raiz, 1,l);
         return l;
     }
-     
+     /**
+      * @author Cristian Castañeda Espitia
+      * el metodo verifica la existencia de algun nodo y empieza a recorrer,
+      * agrega el dato de la izquierda y continua con el de la derecha
+      * @param reco  de tipo Nodo
+      * @param nivel de tipo entero
+      * @param l de tipo ArrayList
+      */
      private void impNiveles(Nodo reco, int nivel,ArrayList l) {
         if (reco != null) {
             impNiveles(reco.getIzquierda(), nivel + 1, l);
@@ -214,12 +238,23 @@ public class ArbolBinario {
      //Nivel ordenado
      String[] niveles;
      
+     /**
+      * @author Cristian Castañeda Espitia
+      * metodo para determinar la altura del arbol sirve para utilizar en otros metodos que necesitan la info
+      * este metodo se ayuda de otro con el mismo nombre pero de tipo VOID
+      * @return 
+      */
      public int alturaArbol() {
         altura = 0;
         alturaArbol(raiz, 0);
         return altura;
     }
 
+     /**
+      * @author Cristian Castañeda Espitia
+      * @param pivote --pivote de tipo Nodo compara si es diferente de Null para empezar a ejecutar el ciclo IF
+      * @param nivel 
+      */
     private void alturaArbol(Nodo pivote, int nivel) {
         if (pivote != null) {
             alturaArbol(pivote.getIzquierda(), nivel + 1);
@@ -259,7 +294,13 @@ public class ArbolBinario {
         getHojas(this.raiz, l);
         return (l);
     }
-
+    /**
+     * @author Cristian Ospina
+     * @author Cristian Castañeda
+     * 
+     * @param r - tipo Nodo -  arroja los valores de las hojas del arbol pintado
+     * @param l - los valores que reconoce como hojas los va almacenando en el array
+     */
     private void getHojas(Nodo r, ArrayList l) {
         if (r != null) {
             if (this.esHoja(r)) {
@@ -325,6 +366,14 @@ public class ArbolBinario {
     int subizq = 0;
     int subder = 0;
 
+    /**
+     * @author Cristian Ospina
+     * @author Cristian Castañeda Espitia
+     * imprimirBalance compara los nodos de la izquierda y derecha a partir de la raiz y verifica
+     * cual lado esta desbalanceado
+     * @return - indica cual es el balance despues de todas las comparaciones con el ciclo IF y muestra el resultdo en
+     * pantalla
+     */
     public String imprimirBalance() {
          subizq = 0;
          subder = 0;
@@ -437,6 +486,26 @@ public class ArbolBinario {
         }
         return lista;
     }
+    
+     //buscar nodo
+    public boolean buscar(int x) {
+        return (buscar(this.raiz, x));
+    }
+    
+    private boolean buscar(Nodo r, int x) {
+        if (r == null) {
+            return (false);
+        }
+        int compara = ((Comparable) r.getDato()).compareTo(x);
+        if (compara > 0) {
+            return (buscar(r.getIzquierda(), x));
+        } else if (compara < 0) {
+            return (buscar(r.getDerecha(), x));
+        } else {
+            return (true);
+        }
+    }
+    
     
     
 }
