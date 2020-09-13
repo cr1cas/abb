@@ -207,6 +207,15 @@ public class ArbolBinario {
         
     }
      
+     
+     public int contarNodos()
+     {
+         return this.contarNodos(raiz);
+     }
+     
+     public int contarNodos(Nodo reco) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
      /**
       * @author Cristian Castañeda Espitia
       * metodo impNiveles de tipo ArrayList que sirve para almacenar todos
@@ -236,8 +245,7 @@ public class ArbolBinario {
 
      
      //Nivel ordenado
-     String[] niveles;
-     
+          
      /**
       * @author Cristian Castañeda Espitia
       * metodo para determinar la altura del arbol sirve para utilizar en otros metodos que necesitan la info
@@ -266,23 +274,23 @@ public class ArbolBinario {
     }
 
     public ArrayList imprimirNivel() {
-        niveles = new String[alturaArbol() + 1]; /*En el método original se 
-                                                 estaba llamando la variable altura,
-                                                 pero se necesitaba llamar el metodo 
-                                                para que hiciera el calculo correspondiente*/
         ArrayList l=new ArrayList();
-        imprimirNivel(raiz, 0);
+        if(raiz != null){
+        String[] niveles = new String[raiz.obtenerAlturaNodo() + 1]; 
+        
+        imprimirNivel(raiz, 0, niveles);
         for (int i = 0; i < niveles.length; i++) {
             l.add(niveles[i] + " ");
             //System.out.println(niveles[i] + " ");
         }
+        }
         return l;
     }
-      public void imprimirNivel(Nodo pivote, int nivel2) {
+      public void imprimirNivel(Nodo pivote, int nivel2, String[] niveles) {
         if (pivote != null) {
             niveles[nivel2] = pivote.getDato() + ", " + ((niveles[nivel2] != null) ? niveles[nivel2] : "");
-            imprimirNivel(pivote.getDerecha(), nivel2 + 1);
-            imprimirNivel(pivote.getIzquierda(), nivel2 + 1);
+            imprimirNivel(pivote.getDerecha(), nivel2 + 1, niveles);
+            imprimirNivel(pivote.getIzquierda(), nivel2 + 1, niveles);
         }
     }
       
@@ -344,7 +352,7 @@ public class ArbolBinario {
     
     
     //eliminar hojas - PODAR
-     public void podar() {
+    public void podar() {
         podar(this.raiz);
     }
 
@@ -352,10 +360,12 @@ public class ArbolBinario {
         if (x == null) {
             return;
         }
-        if (this.esHoja(x.getIzquierda())) {
+        //if (this.esHoja(x.getIzquierda())) {
+        if (x.getIzquierda().isHoja()) {
             x.setIzquierda(null);
         }
-        if (this.esHoja(x.getDerecha())) {
+        //if (this.esHoja(x.getDerecha())) {
+        if (x.getDerecha().isHoja()) {
             x.setDerecha(null);
         }
         podar(x.getIzquierda());
@@ -505,6 +515,8 @@ public class ArbolBinario {
             return (true);
         }
     }
+
+    
     
     
     
