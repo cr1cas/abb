@@ -23,7 +23,7 @@ public class Nodo {
     private int dato;
     private Nodo izquierda;
     private Nodo derecha;
-
+    
     public Nodo(int dato) {
         this.dato = dato;
     }
@@ -36,6 +36,10 @@ public class Nodo {
         this.dato = dato;
     }
 
+    
+
+    
+    
     public Nodo getIzquierda() {
         return izquierda;
     }

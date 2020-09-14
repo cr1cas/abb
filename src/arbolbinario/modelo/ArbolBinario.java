@@ -6,6 +6,7 @@
 package arbolbinario.modelo;
 
 import arbolbinario.modelo.excepciones.ArbolBinarioException;
+import arboln.modelo.ArbolN;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,9 @@ public class ArbolBinario {
     int cant;
     int altura;
     
+    
+    
+    
     //public void adicionarNodo()
     public Nodo getRaiz() {
         return raiz;
@@ -34,6 +38,9 @@ public class ArbolBinario {
         this.raiz = raiz;
     }
 
+    
+
+    
     /*
     @author Critian Castañeda Espitia
     @param  islleno --> para conocer si la raiz esta nula(no tiene ningun dato)
@@ -279,10 +286,10 @@ public class ArbolBinario {
         String[] niveles = new String[raiz.obtenerAlturaNodo() + 1]; 
         
         imprimirNivel(raiz, 0, niveles);
-        for (int i = 0; i < niveles.length; i++) {
+            for (int i = 0; i < niveles.length; i++) {
             l.add(niveles[i] + " ");
             //System.out.println(niveles[i] + " ");
-        }
+            }
         }
         return l;
     }
@@ -427,14 +434,36 @@ public class ArbolBinario {
     }
     
     //borrar mayor
-    public String borrarMayor() {
-        Nodo reco=raiz.getIzquierda();
+//    public String borrarMayor() {
+//        Nodo reco=raiz.getIzquierda();
+//        if (raiz != null) {
+//            if (raiz.getDerecha()== null) {
+//                raiz = raiz.getIzquierda();
+//            } else {
+//                Nodo anterior = raiz;
+//                reco = raiz.getDerecha();
+//                while (reco.getDerecha()!= null) {
+//                    anterior = reco;
+//                    reco = reco.getDerecha();
+//                }
+//                
+//                anterior.setDerecha(reco.getIzquierda());
+//            }
+//        }
+//        return ("Valor eliminado: " + reco.getDato());
+//    }
+    public void borrarMayor() {
+        borrarMayor(this.raiz);
+    }
+    
+    public String borrarMayor(Nodo x) {
+        Nodo reco=x.getIzquierda();
         if (raiz != null) {
-            if (raiz.getDerecha()== null) {
-                raiz = raiz.getIzquierda();
+            if (x.getDerecha()== null) {
+                x = x.getIzquierda();
             } else {
-                Nodo anterior = raiz;
-                reco = raiz.getDerecha();
+                Nodo anterior = x;
+                reco = x.getDerecha();
                 while (reco.getDerecha()!= null) {
                     anterior = reco;
                     reco = reco.getDerecha();
@@ -443,18 +472,44 @@ public class ArbolBinario {
                 anterior.setDerecha(reco.getIzquierda());
             }
         }
-        return ("Valor eliminado: " + reco.getDato());
+        //return ("Valor eliminado: " + reco.getDato());
+        return null;
     }
     
+      
     //Borrar menor
-    public String borrarMenor() {
-        Nodo reco=raiz.getIzquierda();
-        if (raiz != null) {
-            if (raiz.getIzquierda()== null) {
-                raiz = raiz.getDerecha();
+    
+//    public String borrarMenor() {
+//        Nodo reco=raiz.getIzquierda();
+//        if (raiz != null) {
+//            if (raiz.getIzquierda()== null) {
+//                raiz = raiz.getDerecha();
+//            } else {
+//                Nodo anterior = raiz;
+//                reco = raiz.getIzquierda();
+//                while (reco.getIzquierda()!= null) {
+//                    anterior = reco;
+//                    reco = reco.getIzquierda();
+//                }
+//                
+//                anterior.setIzquierda(reco.getDerecha());
+//            }
+//        }
+//        return ("Valor eliminado: " + reco.getDato());
+//    }
+    
+    public void borrarMenor() {
+        borrarMenor(this.raiz);
+    }
+    
+    public String borrarMenor(Nodo x) {
+        Nodo reco=x.getIzquierda();
+        if (x != null) {
+            if (x.getIzquierda()== null) {
+                x = x.getDerecha();
             } else {
-                Nodo anterior = raiz;
-                reco = raiz.getIzquierda();
+                Nodo anterior = x;
+                reco = x.getIzquierda();
                 while (reco.getIzquierda()!= null) {
                     anterior = reco;
                     reco = reco.getIzquierda();
@@ -463,7 +518,8 @@ public class ArbolBinario {
                 anterior.setIzquierda(reco.getDerecha());
             }
         }
-        return ("Valor eliminado: " + reco.getDato());
+        //return ("Valor eliminado: " + reco.getDato());
+        return null;
     }
     
     //Obtener el numero de ramas
@@ -516,8 +572,58 @@ public class ArbolBinario {
         }
     }
 
+    //      //cambiar datos
+      public boolean multiplicarValores() {
+        
+            multiplicarValores(raiz, 1);
+            return true;
+    }
+
+    private void multiplicarValores(Nodo reco, int nivel) {
+        
+        if (reco != null) {
+            
+            reco.setDato(reco.getDato() * 3);
+            multiplicarValores(reco.getIzquierda(), nivel + 1);
+            multiplicarValores(reco.getDerecha(), nivel + 1);
+        }
+     
+        
+              
+            
+            
+//    }
+    }
     
     
     
     
+    
+    
+    
+    //ELIMINAR NIVEL
+//    public ArrayList eliminarNivel() {
+//        ArrayList l=new ArrayList();
+//        eliminarNivel(raiz, 1,l);
+//        
+//        
+//        if (l = raiz.getDato()) {
+//            return l;
+//        }
+//        return null;
+//    }
+//     
+//     private void eliminarNivel(Nodo reco, int nivel,ArrayList l) {
+//        if (reco != null) {
+//            eliminarNivel(reco.getIzquierda(), nivel + 1, l);
+//            l.add(reco.getDato() + " Nivel: (" + nivel + ") ");
+//            eliminarNivel(reco.getDerecha(), nivel + 1, l);
+//            
+//            
+//        }
+//    }
+    
+    
+    
+
 }
